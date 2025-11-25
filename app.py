@@ -1,6 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+from collections import defaultdict
+
 from motor import motor_asyncio
 from config import BaseConfig
+
+from routers.cars import router as cars_router
+from routers.users import router as users_router
 
 settings = BaseConfig()
 
