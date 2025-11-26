@@ -11,3 +11,7 @@ class CarModel(BaseModel):
         populate_by_alias=True,
         arbitrary_types_allowed=True,
         .....
+
+
+Check and update if needed launch.json for debugger
+.../.vscode/launch.json
