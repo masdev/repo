@@ -12,6 +12,7 @@ class CarModel(BaseModel):
     cm3: int = Field(..., gt=0, lt=10000)
     km: int = Field(..., gt=0, lt=1000000)
     price: int = Field(..., gt=0, lt=99000000)
+    picture_url: Optional[str] = Field(None)
 
     @field_validator("brand")
     @classmethod
@@ -47,6 +48,7 @@ class UpdateCarModel(BaseModel):
     cm3: Optional[int] = Field(..., gt=0, lt=10000)
     km: Optional[int] = Field(..., gt=0, lt=1000*1000)
     price: Optional[int] = Field(..., gt=0, lt=99*1000*1000)
+    picture_url: Optional[str] = Field(None)
 
     @field_validator("brand")
     @classmethod
@@ -76,3 +78,23 @@ class UpdateCarModel(BaseModel):
 
 class CarCollection(BaseModel):
     cars: List[CarModel]
+
+class CarCollectionPagination(CarCollection):
+    page: int = Field(ge=1, default=1)
+    has_more: bool
+
+######################### USER MODELS ###################################
+
+
+class UserModel(BaseModel):
+    id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    username: str = Field(..., min_length=3, max_length=15)
+    password: str = Field(...)
+
+class LoginModel(BaseModel):
+    username: str = Field(...)
+    password: str = Field(...)
+
+class CurrentUserModel(BaseModel):
+    id: PyObjectId = Field(alias="_id", default=None)
+    username: str = Field(..., min_length=3, max_length=15)

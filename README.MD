@@ -15,3 +15,5 @@ class CarModel(BaseModel):
 
 Check and update if needed launch.json for debugger
 .../.vscode/launch.json
+
+chapter7 % pip3 install cloudinary python-multipart
