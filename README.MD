@@ -17,3 +17,7 @@ Check and update if needed launch.json for debugger
 .../.vscode/launch.json
 
 chapter7 % pip3 install cloudinary python-multipart
+
+In order to export your requirements.txt you need:
+1) activate your environment
+2) pip freeze > requirements.txt

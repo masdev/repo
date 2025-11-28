@@ -27,7 +27,9 @@ from authentication import AuthHandler
 
 settings = BaseConfig()
 router = APIRouter()
+
 auth_handler = AuthHandler()
+
 cloudinary.config(api_secret=settings.CLOUDINARY_SECRET_KEY,
     api_key=settings.CLOUDINARY_API_KEY,
     cloud_name=settings.CLOUDINARY_CLOUD_NAME)
@@ -51,7 +53,8 @@ async def add_car_with_picture(
     cm3: int = Form("cm3"),
     km: int = Form("km"),
     price: int = Form("price"),
-    picture: UploadFile = File("picture")
+    picture: UploadFile = File("picture"),
+    user: str = Depends(auth_handler.auth_wrapper)
     ):
     
     # Upload to Cloudinary
@@ -78,7 +81,8 @@ async def add_car_with_picture(
         cm3=cm3,
         km=km,
         price=price,
-        picture_url=picture_url
+        picture_url=picture_url,
+        user_id=user["user_id"]
     )
 
     cars = request.app.db["cars"]
