@@ -161,6 +161,7 @@ async def update_car_by_id(request: Request, id: str, user = Depends(auth_handle
         else:
             raise HTTPException(status_code=404, detail=f"Car {id} not found")
 
+#chapter7 % http DELETE https://repo-fglu.onrender.com/cars/692662bd426124f088bf1bb6 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NjQzNzczNDEsImlhdCI6MTc2NDM3NTU0MSwic3ViIjp7InVzZXJfaWQiOiI2OTJhMzhkZDNhMTc5MzRlYzIwOWVlOTYiLCJ1c2VybmFtZSI6ImFkbWluMiJ9fQ.U0pG4LBGuyzuJjX4MZ_yx_4WaAm3_dOtyuNVd6cJ74k'
 @router.delete("/{id}", response_description="Delete existing car", response_model=CarModel, response_model_by_alias=False)
 async def delete_car_by_id(request: Request, id: str, user = Depends(auth_handler.auth_wrapper)):
     cars = request.app.db["cars"]
@@ -174,5 +175,3 @@ async def delete_car_by_id(request: Request, id: str, user = Depends(auth_handle
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     else:
         raise HTTPException(status_code=404, detail=f"Car with {id} not found")
-
-
