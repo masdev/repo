@@ -17,3 +17,4 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 npm i react-router-dom@6.30.2
+npm install i react-hook-form

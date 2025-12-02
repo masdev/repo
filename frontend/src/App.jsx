@@ -6,12 +6,13 @@ import Cars from './pages/Cars'
 import SingleCar from './pages/SingleCar'
 import NewCar from './pages/NewCar'
 import NotFound from './pages/NotFound'
+import { carsLoader } from './pages/Cars'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout />}>
       <Route index element={<Home />} />
-      <Route path="cars" element={<Cars />} />
+      <Route path="cars" element={<Cars />} loader={carsLoader} />
       <Route path="login" element={<Login />} />
       <Route path="new-car" element={<NewCar />} />
       <Route path="car/:id" element={<SingleCar />} />
